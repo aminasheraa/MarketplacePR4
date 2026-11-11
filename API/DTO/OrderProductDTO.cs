@@ -1,7 +1,6 @@
 ﻿namespace API.DTO
 {
-    public class OrderProductDTO
-    {
-        public record OrderProductDto(ProductDTO Product, int Quantity);
-    }
+
+        public record OrderProductDTO(string Name, decimal Price, int Quantity);
+    
 }

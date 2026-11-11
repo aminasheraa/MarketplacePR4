@@ -2,10 +2,9 @@
 
 namespace API.DTO
 {
-    public class OrderDTO
-    {
-        public record OrderDto(int ID, int UserID, DateTime DateOfOrder, decimal TotalPrice, int StatusID, List<OrderProductDTO> Products, string Address);
+
+        public record OrderDTO(int ID, int UserID, DateOnly DateOfOrder, decimal TotalPrice, int StatusID, List<OrderProductDTO> Products, string Adress);
         
         
-    }
+    
 }
