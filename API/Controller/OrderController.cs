@@ -16,7 +16,7 @@ namespace API.Controller
         }
 
         [HttpGet]
-        [Authorize(Roles = "Менеджер")]
+        //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -24,7 +24,7 @@ namespace API.Controller
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Менеджер,Администратор")]
+        //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -48,6 +48,14 @@ namespace API.Controller
                 return Unauthorized();
 
             var result = await _service.PostListAsync(userId, Products);
+            return result.ToActionResult();
+        }
+
+        [HttpPut("{id}/status")]
+        //[Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateOrderStatusDTO statusDTO)
+        {
+            var result = await _service.UpdateOrderStatusAsync(id, statusDTO.StatusID);
             return result.ToActionResult();
         }
     }

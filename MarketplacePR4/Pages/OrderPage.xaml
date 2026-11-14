@@ -1,0 +1,68 @@
+﻿<Page x:Class="MarketplacePR4.Pages.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarketplacePR4.Pages"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="backBtn" Content="←" FontSize="18" Width="60" Height="40" Margin="20,20,0,10" HorizontalAlignment="Left" Background="#D2685B" ToolTip="Вернуться на предыдущую страницу" Click="backBtn_Click"/>
+
+        <Border Grid.Row="1" Margin="25" BorderBrush="#3A2119" BorderThickness="3" Background="#D9CBC2" CornerRadius="12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Margin="23">
+                    <TextBlock Text="{Binding ID, StringFormat=Заказ №{0}}" FontSize="19" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding DateOfOrder, StringFormat=Дата заказа: {0:dd.MM.yyyy}}" FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
+
+                    <ListBox x:Name="productsList" Background="Transparent" BorderThickness="0,3" Margin="0,15" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="15" BorderBrush="#3A2119" BorderThickness="3" Background="#E4EBE0" CornerRadius="15" Width="140" Height="200">
+                                    <StackPanel Margin="15">
+                                        <Image Source="{Binding Image}" Width="85" Height="75" Stretch="Uniform"/>
+
+                                        <TextBlock Text="{Binding Name}" FontSize="18" TextWrapping="Wrap" Margin="0,10,0,3"/>
+                                        <TextBlock Text="{Binding Price, StringFormat={}{0}P}" FontSize="18"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="{Binding TotalPrice, StringFormat=Цена: {0}Р}" FontSize="18" FontWeight="Bold"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,5">
+                        <TextBlock Text="Статус заказа:" FontSize="18"/>
+                        <TextBlock x:Name="statusTBl" Text="{Binding Status.Name}" FontSize="18" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <ComboBox x:Name="statusCB" Height="35" FontSize="18" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+
+                    <TextBlock Text="{Binding TypeOfReceiving.Name, StringFormat=Способ получения: {0}}" FontSize="18" Margin="0,13,0,0"/>
+                    <TextBlock Text="{Binding PickUpPoint.Address, StringFormat=Адрес пункта выдачи: {0}}" FontSize="18"/>
+                    <TextBlock Text="{Binding AddressOfDelivery, StringFormat=Адрес доставки: {0}}" FontSize="18" Margin="0,0,0,10"/>
+                </StackPanel>
+
+                <Button x:Name="saveBtn" Content="Сохранить" FontSize="18" Height="45" Margin="30" Grid.Row="1" Background="#838C54" Click="saveBtn_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
