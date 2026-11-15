@@ -24,20 +24,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="10,0" ToolTip="Поиск некорретных слов по тексту отзыва">
+            <StackPanel Grid.Column="0" Margin="10,0" ToolTip="Поиск отзывов, содержащих нежелательные выражения в тексте">
                 <TextBlock Text="Поиск:" FontSize="18"/>
                 <TextBox x:Name="searchTB" Height="35" FontSize="18" TextChanged="searchTB_TextChanged"/>
             </StackPanel>
-            
-            <StackPanel Grid.Column="1" Margin="10,0" ToolTip="Фильтрация по наименованию товара">
-                <TextBlock Text="Товар:" FontSize="18"/>
-                <ComboBox x:Name="productCB" Height="35" FontSize="18" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="productCB_SelectionChanged"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Column="2" Margin="10,0" ToolTip="Сортировка по возрастанию / убыванию рейтинга товара">
+
+            <StackPanel Grid.Column="1" Margin="10,0" ToolTip="Сортировка отзывов по возрастанию / убыванию оценки товара">
                 <TextBlock Text="По рейтингу:" FontSize="18"/>
                 <ComboBox x:Name="ratingCB" Height="35" FontSize="18" SelectionChanged="ratingCB_SelectionChanged">
                     <ComboBoxItem Content="Без сортировки"/>

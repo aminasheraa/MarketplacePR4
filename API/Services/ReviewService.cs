@@ -34,6 +34,35 @@ namespace API.Services
             };
         }
 
+        public async Task<Result<ReviewDTO>> GetByIDAsync(int reviewID)
+        {
+            ReviewDTO? review = await _dbContext.Reviews.Where(rev => rev.ID == reviewID)
+                .Select(r => new ReviewDTO(
+                    r.ID,
+                    r.Date,
+                    r.Rating,
+                    r.Description,
+                    r.User.Name,
+                    r.Product.Name
+                    )
+                ).FirstOrDefaultAsync();
+
+            if (review == null)
+            {
+                return new Result<ReviewDTO> 
+                { 
+                    Status = ResultStatus.NotFound,
+                    Message = "Отзыва с таким ID не существует."
+                };
+            }
+
+            return new Result<ReviewDTO>
+            {
+                Status = ResultStatus.Success,
+                Data = review
+            };
+        }
+
         public async Task<Result<List<ReviewDTO>>> GetByProductIDAsync(int productID)
         {
             if (!await _dbContext.Products.AnyAsync(p => p.ID == productID))

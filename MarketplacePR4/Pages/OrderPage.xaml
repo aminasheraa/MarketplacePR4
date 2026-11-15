@@ -27,6 +27,8 @@
                     <TextBlock Text="{Binding ID, StringFormat=Заказ №{0}}" FontSize="19" FontWeight="Bold"/>
                     <TextBlock Text="{Binding DateOfOrder, StringFormat=Дата заказа: {0:dd.MM.yyyy}}" FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
 
+                    <TextBlock x:Name="userTBl" Text="{Binding User.Name, StringFormat=Заказ пользователя {0}}" FontSize="19" Margin="0,0,0,5"/>
+
                     <ListBox x:Name="productsList" Background="Transparent" BorderThickness="0,3" Margin="0,15" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>

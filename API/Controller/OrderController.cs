@@ -51,6 +51,14 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
+        [HttpGet("statuses")]
+        //[Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> GetAllStatuses()
+        {
+            var result = await _service.GetAllStatusesAsync();
+            return result.ToActionResult();
+        }
+
         [HttpPut("{id}/status")]
         //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateOrderStatusDTO statusDTO)

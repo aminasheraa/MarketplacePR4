@@ -6,6 +6,8 @@ using API.Interfaces;
 
 namespace API.Controller
 {
+    [ApiController]
+    [Route("api/review")]
     public class ReviewController : ControllerBase
     {
         IReviewService _service;
@@ -15,7 +17,7 @@ namespace API.Controller
             _service = service;
         }
 
-        [HttpGet("api/reviewsList")]
+        [HttpGet("List")]
         //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
@@ -23,14 +25,21 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
-        [HttpGet("api/review/product/{productID}")]
+        [HttpGet("{reviewID}")]
+        public async Task<IActionResult> GetByID(int reviewID)
+        {
+            var result = await _service.GetByIDAsync(reviewID);
+            return result.ToActionResult();
+        }
+
+        [HttpGet("product/{productID}")]
         public async Task<IActionResult> GetByProductID(int productID)
         {
             var result = await _service.GetByProductIDAsync(productID);
             return result.ToActionResult();
         }
 
-        [HttpPost("api/review")]
+        [HttpPost("post")]
         public async Task<IActionResult> PostReview(PostReviewDTO postReviewDTO)
         {
             if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
@@ -40,7 +49,7 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
-        [HttpDelete("api/review/{reviewID}")]
+        [HttpDelete("del/{reviewID}")]
         //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> DeleteReview(int reviewID)
         {

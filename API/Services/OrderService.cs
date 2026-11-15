@@ -151,6 +151,22 @@ namespace API.Services
             };
         }
 
+        public async Task<Result<List<StatusDTO>>> GetAllStatusesAsync()
+        {
+            List<StatusDTO> statuses = await _dbContext.Statuses
+                .Select(s => new StatusDTO(
+                    s.ID,
+                    s.Name
+                    )
+                ).ToListAsync();
+
+            return new Result<List<StatusDTO>>
+            {
+                Status = ResultStatus.Success,
+                Data = statuses
+            };
+        }
+
         public async Task<Result<bool>> UpdateOrderStatusAsync(int orderID, int statusID)
         {
             Order? order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.ID == orderID);
