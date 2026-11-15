@@ -47,7 +47,7 @@ public partial class MarketPlacePR4Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=aminabook\\SQLEXPRESS;Initial Catalog=MarketPlacePR4;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DIMA\\SQLEXPRESS;Initial Catalog=MarketPlacePR4;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -191,7 +191,7 @@ public partial class MarketPlacePR4Context : DbContext
         {
             entity.ToTable("Saved");
 
-            entity.Property(e => e.Name).HasMaxLength(50);
+            //entity.Property(e => e.Name).HasMaxLength(50);
 
             entity.HasOne(d => d.User).WithMany(p => p.Saveds)
                 .HasForeignKey(d => d.UserID)
@@ -244,8 +244,7 @@ public partial class MarketPlacePR4Context : DbContext
                 .HasMaxLength(50);
             entity.Property(e => e.Password)
                 .IsRequired()
-                .HasMaxLength(50);
-
+                .HasMaxLength(255);
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
