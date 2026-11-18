@@ -100,7 +100,6 @@
     <Compile Include="Helpers\OrderProductDTO.cs" />
     <Compile Include="Helpers\PostReviewDTO.cs" />
     <Compile Include="Helpers\ReviewDTO.cs" />
-    <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\StatusDTO.cs" />
     <Compile Include="Helpers\UpdateOrderStatusDTO.cs" />
     <Compile Include="MainWindow.xaml.cs">
