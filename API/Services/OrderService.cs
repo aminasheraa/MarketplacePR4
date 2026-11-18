@@ -98,7 +98,12 @@ namespace API.Services
             };
         }
 
-        public async Task<Result<int>> PostListAsync(int userID, List<PostOrderDTO> Products)
+        public async Task<Result<int>> PostListAsync(
+    int userID,
+    List<PostOrderDTO> Products,
+    int typeOfReceivingId,
+    int? pickUpPointId,
+    string address)
         {
             if (Products == null || Products.Count == 0)
                 return new Result<int>
@@ -121,88 +126,107 @@ namespace API.Services
                     Message = "Количество товара должно быть больше нуля"
                 };
 
-            var productIds = Products.Select(p => p.ProductID).ToList();
-
-            if (await _dbContext.Products.CountAsync(p => productIds.Contains(p.ID)) != productIds.Count)
+            if (!await _dbContext.Set<TypeOfReceiving>()
+                .AnyAsync(t => t.ID == typeOfReceivingId))
                 return new Result<int>
                 {
-                    Status = ResultStatus.NotFound,
-                    Message = "Один или несколько товаров не найдены"
+                    Status = ResultStatus.InvalidData,
+                    Message = "Способ получения не найден"
                 };
 
-            Order NewOrder = new Order()
+            if (typeOfReceivingId == 1)
+            {
+                if (pickUpPointId == null ||
+                    !await _dbContext.Set<PickUpPoint>()
+                        .AnyAsync(p => p.ID == pickUpPointId))
+                    return new Result<int>
+                    {
+                        Status = ResultStatus.InvalidData,
+                        Message = "Выберите пункт самовывоза"
+                    };
+
+                address = null;
+            }
+            else if (typeOfReceivingId == 2)
+            {
+                if (string.IsNullOrWhiteSpace(address))
+                    return new Result<int>
+                    {
+                        Status = ResultStatus.InvalidData,
+                        Message = "Введите адрес доставки"
+                    };
+
+                pickUpPointId = null;
+            }
+
+            var newOrder = new Order()
             {
                 UserID = userID,
-                OrderProducts = new List<OrderProduct>(),
-                DateOfOrder = DateOnly.FromDateTime(DateTime.Now)
+                DateOfOrder = DateOnly.FromDateTime(DateTime.Today),
+                TypeOfReceivingID = typeOfReceivingId,
+                PickUpPointID = pickUpPointId,
+                AddressOfDelivery = address,
+                StatusID = 1,
+                OrderProducts = new List<OrderProduct>()
             };
-            foreach (var productsInOrder in Products)
-                NewOrder.OrderProducts.Add(new OrderProduct
-                {
-                    ProductID = productsInOrder.ProductID,
-                    Quantity = productsInOrder.Quantity,
-                });
 
-            _dbContext.Orders.Add(NewOrder);
+            decimal totalPrice = 0;
+
+            foreach (var item in Products)
+            {
+                var product = await _dbContext.Products
+                    .FirstOrDefaultAsync(p => p.ID == item.ProductID);
+
+                if (product == null)
+                    return new Result<int>
+                    {
+                        Status = ResultStatus.NotFound,
+                        Message = "Один или несколько товаров не найдены"
+                    };
+
+                totalPrice += product.Price * item.Quantity;
+
+                newOrder.OrderProducts.Add(new OrderProduct
+                {
+                    ProductID = item.ProductID,
+                    Quantity = item.Quantity
+                });
+            }
+
+            newOrder.TotalPrice = totalPrice;
+
+            _dbContext.Orders.Add(newOrder);
 
             await _dbContext.SaveChangesAsync();
 
-            return new Result<int>()
+            return new Result<int>
             {
                 Status = ResultStatus.Success,
-                Data = NewOrder.ID
+                Data = newOrder.ID
             };
         }
 
-        public async Task<Result<List<StatusDTO>>> GetAllStatusesAsync()
+        public async Task<List<TypeOfReceiving>> GetReceivingTypesAsync()
         {
-            List<StatusDTO> statuses = await _dbContext.Statuses
-                .Select(s => new StatusDTO(
-                    s.ID,
-                    s.Name
-                    )
-                ).ToListAsync();
-
-            return new Result<List<StatusDTO>>
-            {
-                Status = ResultStatus.Success,
-                Data = statuses
-            };
+            return await _dbContext.Set<TypeOfReceiving>()
+                .Select(t => new TypeOfReceiving
+                {
+                    ID = t.ID,
+                    Name = t.Name
+                })
+                .ToListAsync();
         }
 
-        public async Task<Result<bool>> UpdateOrderStatusAsync(int orderID, int statusID)
+        public async Task<List<PickUpPoint>> GetPickUpPointsAsync()
         {
-            Order? order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.ID == orderID);
-            if (order != null)
-            {
-                if (!await _dbContext.Statuses.AnyAsync(s => s.ID == statusID))
+            return await _dbContext.Set<PickUpPoint>()
+                .Select(p => new PickUpPoint
                 {
-                    return new Result<bool>
-                    {
-                        Status = ResultStatus.NotFound,
-                        Message = "Такой статус не найден."
-                    };
-                }
-
-                if (order.StatusID == statusID)
-                {
-                    return new Result<bool>
-                    {
-                        Status = ResultStatus.InvalidData,
-                        Message = "Заказ итак имеет этот статус."
-                    };
-                }
-
-                order.StatusID = statusID;
-                await _dbContext.SaveChangesAsync();
-
-                return new Result<bool>
-                {
-                    Status = ResultStatus.Success,
-                    Data = true,
-                    Message = "Статус заказа успешно изменён!"
-                };
-            }
+                    ID = p.ID,
+                    Address = p.Address
+                })
+                .ToListAsync();
+        }
 
             return new Result<bool>
             {
