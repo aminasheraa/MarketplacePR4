@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+<Node Id="IModel" Label="MarketPlacePR4Context" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" PropertyAccessMode="PropertyAccessMode.Default" ProductVersion="10.0.0" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]]
+InversePropertyAttributeConvention:InverseNavigations: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]]
+NonNullableConventionState: System.Reflection.NullabilityInfoContext
+Relational:MaxIdentifierLength: 128
+SqlServer:ValueGenerationStrategy: IdentityColumn" Category="Model" Group="Expanded" />
+<Node Id = "Cart" Label="Cart" Name="Cart" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Cart
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Category" Label="Category" Name="Category" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Category
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Cart.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Cart.ProductCarts" Label="ProductCarts (*)" Name="ProductCarts" Category="Navigation Collection" Type="ICollection&lt;ProductCart&gt;"  Field="" Dependent="ProductCart" Principal="" Inverse="Cart" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Cart.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="Carts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Cart.TotalPrice" Label="TotalPrice (decimal)" Name="TotalPrice" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: decimal(10, 2)" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Cart.UserID" Label="UserID (int)" Name="UserID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order" Label="Order" Name="Order" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Order
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Category.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Category.Products" Label="Products (*)" Name="Products" Category="Navigation Collection" Type="ICollection&lt;Product&gt;"  Field="" Dependent="Product" Principal="" Inverse="Category" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Category.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "OrderProduct" Label="OrderProduct" Name="OrderProduct" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: OrderProduct
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Order.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Order.OrderProducts" Label="OrderProducts (*)" Name="OrderProducts" Category="Navigation Collection" Type="ICollection&lt;OrderProduct&gt;"  Field="" Dependent="OrderProduct" Principal="" Inverse="Order" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Order.PickUpPoint" Label="PickUpPoint (1)" Name="PickUpPoint" Category="Navigation Property" Type="PickUpPoint"  Field="" Dependent="" Principal="PickUpPoint" Inverse="Orders" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Order.Status" Label="Status (1)" Name="Status" Category="Navigation Property" Type="Status"  Field="" Dependent="" Principal="Status" Inverse="Orders" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Order.TypeOfReceiving" Label="TypeOfReceiving (1)" Name="TypeOfReceiving" Category="Navigation Property" Type="TypeOfReceiving"  Field="" Dependent="" Principal="TypeOfReceiving" Inverse="Orders" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Order.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="Orders" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Order.AddressOfDelivery" Label="AddressOfDelivery (string)" Name="AddressOfDelivery" Category="Property Optional" Type="string" MaxLength="(150)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 150" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.DateOfOrder" Label="DateOfOrder (DateOnly)" Name="DateOfOrder" Category="Property Required" Type="DateOnly" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.PickUpPointID" Label="PickUpPointID (int?)" Name="PickUpPointID" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.StatusID" Label="StatusID (int)" Name="StatusID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.TotalPrice" Label="TotalPrice (decimal)" Name="TotalPrice" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: decimal(10, 2)" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.TypeOfReceivingID" Label="TypeOfReceivingID (int)" Name="TypeOfReceivingID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Order.UserID" Label="UserID (int)" Name="UserID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "PickUpPoint" Label="PickUpPoint" Name="PickUpPoint" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: PickUpPoint
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "OrderProduct.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "OrderProduct.Order" Label="Order (1)" Name="Order" Category="Navigation Property" Type="Order"  Field="" Dependent="" Principal="Order" Inverse="OrderProducts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "OrderProduct.Product" Label="Product (1)" Name="Product" Category="Navigation Property" Type="Product"  Field="" Dependent="" Principal="Product" Inverse="OrderProducts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "OrderProduct.OrderID" Label="OrderID (int)" Name="OrderID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "OrderProduct.ProductID" Label="ProductID (int)" Name="ProductID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "OrderProduct.Quantity" Label="Quantity (int)" Name="Quantity" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product" Label="Product" Name="Product" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Product
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "PickUpPoint.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "PickUpPoint.Orders" Label="Orders (*)" Name="Orders" Category="Navigation Collection" Type="ICollection&lt;Order&gt;"  Field="" Dependent="Order" Principal="" Inverse="PickUpPoint" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "PickUpPoint.Address" Label="Address (string)" Name="Address" Category="Property Required" Type="string" MaxLength="(150)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 150" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductCart" Label="ProductCart" Name="ProductCart" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: ProductCart
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Product.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Product.Category" Label="Category (1)" Name="Category" Category="Navigation Property" Type="Category"  Field="" Dependent="" Principal="Category" Inverse="Products" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Product.OrderProducts" Label="OrderProducts (*)" Name="OrderProducts" Category="Navigation Collection" Type="ICollection&lt;OrderProduct&gt;"  Field="" Dependent="OrderProduct" Principal="" Inverse="Product" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Product.ProductCarts" Label="ProductCarts (*)" Name="ProductCarts" Category="Navigation Collection" Type="ICollection&lt;ProductCart&gt;"  Field="" Dependent="ProductCart" Principal="" Inverse="Product" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Product.Reviews" Label="Reviews (*)" Name="Reviews" Category="Navigation Collection" Type="ICollection&lt;Review&gt;"  Field="" Dependent="Review" Principal="" Inverse="Product" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Product.SavedProducts" Label="SavedProducts (*)" Name="SavedProducts" Category="Navigation Collection" Type="ICollection&lt;SavedProduct&gt;"  Field="" Dependent="SavedProduct" Principal="" Inverse="Product" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Product.CategoryID" Label="CategoryID (int)" Name="CategoryID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="(300)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 300" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.Image" Label="Image (string)" Name="Image" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.IsAvailable" Label="IsAvailable (bool)" Name="IsAvailable" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(100)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 100" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.PackageCount" Label="PackageCount (int?)" Name="PackageCount" Category="Property Optional" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.Price" Label="Price (decimal)" Name="Price" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: decimal(10, 2)" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.Rating" Label="Rating (decimal)" Name="Rating" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: decimal(3, 2)" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Product.StockQuantity" Label="StockQuantity (int)" Name="StockQuantity" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Review" Label="Review" Name="Review" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Review
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ProductCart.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "ProductCart.Cart" Label="Cart (1)" Name="Cart" Category="Navigation Property" Type="Cart"  Field="" Dependent="" Principal="Cart" Inverse="ProductCarts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ProductCart.Product" Label="Product (1)" Name="Product" Category="Navigation Property" Type="Product"  Field="" Dependent="" Principal="Product" Inverse="ProductCarts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "ProductCart.CartID" Label="CartID (int)" Name="CartID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductCart.ProductID" Label="ProductID (int)" Name="ProductID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ProductCart.Quantity" Label="Quantity (int)" Name="Quantity" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Role" Label="Role" Name="Role" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Role
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Review.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Review.Product" Label="Product (1)" Name="Product" Category="Navigation Property" Type="Product"  Field="" Dependent="" Principal="Product" Inverse="Reviews" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Review.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="Reviews" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Review.Date" Label="Date (DateOnly)" Name="Date" Category="Property Required" Type="DateOnly" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Review.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Review.ProductID" Label="ProductID (int)" Name="ProductID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Review.Rating" Label="Rating (decimal)" Name="Rating" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="Relational:ColumnType: decimal(4, 2)" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Review.UserID" Label="UserID (int)" Name="UserID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Saved" Label="Saved" Name="Saved" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Saved
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Role.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Role.Users" Label="Users (*)" Name="Users" Category="Navigation Collection" Type="ICollection&lt;User&gt;"  Field="" Dependent="User" Principal="" Inverse="Role" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Role.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "SavedProduct" Label="SavedProduct" Name="SavedProduct" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: SavedProduct
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Saved.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Saved.SavedProducts" Label="SavedProducts (*)" Name="SavedProducts" Category="Navigation Collection" Type="ICollection&lt;SavedProduct&gt;"  Field="" Dependent="SavedProduct" Principal="" Inverse="Saved" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Saved.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="Saveds" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Saved.Name" Label="Name (string)" Name="Name" Category="Property Optional" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Saved.UserID" Label="UserID (int)" Name="UserID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Status" Label="Status" Name="Status" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: Status
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "SavedProduct.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "SavedProduct.Product" Label="Product (1)" Name="Product" Category="Navigation Property" Type="Product"  Field="" Dependent="" Principal="Product" Inverse="SavedProducts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "SavedProduct.Saved" Label="Saved (1)" Name="Saved" Category="Navigation Property" Type="Saved"  Field="" Dependent="" Principal="Saved" Inverse="SavedProducts" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "SavedProduct.ProductID" Label="ProductID (int)" Name="ProductID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "SavedProduct.SavedID" Label="SavedID (int)" Name="SavedID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "TypeOfReceiving" Label="TypeOfReceiving" Name="TypeOfReceiving" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: TypeOfReceiving
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Status.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Status.Orders" Label="Orders (*)" Name="Orders" Category="Navigation Collection" Type="ICollection&lt;Order&gt;"  Field="" Dependent="Order" Principal="" Inverse="Status" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Status.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User" Label="User" Name="User" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: User
+RelationshipDiscoveryConvention:NavigationCandidates: Microsoft.EntityFrameworkCore.Utilities.OrderedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "TypeOfReceiving.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "TypeOfReceiving.Orders" Label="Orders (*)" Name="Orders" Category="Navigation Collection" Type="ICollection&lt;Order&gt;"  Field="" Dependent="Order" Principal="" Inverse="TypeOfReceiving" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "TypeOfReceiving.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User" Label="User" Name="User" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="" Category="EntityType" Group="Expanded" />
+<Node Id = "User.ID" Label="ID (int)" Name="ID" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "User.Carts" Label="Carts (*)" Name="Carts" Category="Navigation Collection" Type="ICollection&lt;Cart&gt;"  Field="" Dependent="Cart" Principal="" Inverse="User" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "User.Orders" Label="Orders (*)" Name="Orders" Category="Navigation Collection" Type="ICollection&lt;Order&gt;"  Field="" Dependent="Order" Principal="" Inverse="User" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "User.Reviews" Label="Reviews (*)" Name="Reviews" Category="Navigation Collection" Type="ICollection&lt;Review&gt;"  Field="" Dependent="Review" Principal="" Inverse="User" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "User.Role" Label="Role (1)" Name="Role" Category="Navigation Property" Type="Role"  Field="" Dependent="" Principal="Role" Inverse="Users" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "User.Saveds" Label="Saveds (*)" Name="Saveds" Category="Navigation Collection" Type="ICollection&lt;Saved&gt;"  Field="" Dependent="Saved" Principal="" Inverse="User" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "User.Login" Label="Login (string)" Name="Login" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.Password" Label="Password (string)" Name="Password" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.RoleID" Label="RoleID (int)" Name="RoleID" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+<Link Source = "IModel" Target="Cart" Category="Contains" />
+<Link Source = "IModel" Target="Category" Category="Contains" />
+<Link Source = "Cart" Target="Cart.ProductCarts" Category="Contains" />
+<Link Source = "Cart" Target="Cart.User" Category="Contains" />
+<Link Source = "Cart" Target="Cart.ID" Category="Contains" />
+<Link Source="Cart" Target="User" From="Cart.UserID" To="User.ID" Name="Cart -> User" Annotations="Relational:Name: FK_Cart_User" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Cart" Target="Cart.TotalPrice" Category="Contains" />
+<Link Source = "Cart" Target="Cart.UserID" Category="Contains" />
+<Link Source = "IModel" Target="Order" Category="Contains" />
+<Link Source = "Category" Target="Category.Products" Category="Contains" />
+<Link Source = "Category" Target="Category.ID" Category="Contains" />
+<Link Source = "Category" Target="Category.Name" Category="Contains" />
+<Link Source = "IModel" Target="OrderProduct" Category="Contains" />
+<Link Source = "Order" Target="Order.OrderProducts" Category="Contains" />
+<Link Source = "Order" Target="Order.PickUpPoint" Category="Contains" />
+<Link Source = "Order" Target="Order.Status" Category="Contains" />
+<Link Source = "Order" Target="Order.TypeOfReceiving" Category="Contains" />
+<Link Source = "Order" Target="Order.User" Category="Contains" />
+<Link Source = "Order" Target="Order.ID" Category="Contains" />
+<Link Source="Order" Target="PickUpPoint" From="Order.PickUpPointID" To="PickUpPoint.ID" Name="Order -> PickUpPoint" Annotations="Relational:Name: FK_Order_PickUpPoint" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Order" Target="Status" From="Order.StatusID" To="Status.ID" Name="Order -> Status" Annotations="Relational:Name: FK_Order_Status" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Order" Target="TypeOfReceiving" From="Order.TypeOfReceivingID" To="TypeOfReceiving.ID" Name="Order -> TypeOfReceiving" Annotations="Relational:Name: FK_Order_TypeOfReceiving" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Order" Target="User" From="Order.UserID" To="User.ID" Name="Order -> User" Annotations="Relational:Name: FK_Order_User" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Order" Target="Order.AddressOfDelivery" Category="Contains" />
+<Link Source = "Order" Target="Order.DateOfOrder" Category="Contains" />
+<Link Source = "Order" Target="Order.PickUpPointID" Category="Contains" />
+<Link Source = "Order" Target="Order.StatusID" Category="Contains" />
+<Link Source = "Order" Target="Order.TotalPrice" Category="Contains" />
+<Link Source = "Order" Target="Order.TypeOfReceivingID" Category="Contains" />
+<Link Source = "Order" Target="Order.UserID" Category="Contains" />
+<Link Source = "IModel" Target="PickUpPoint" Category="Contains" />
+<Link Source = "OrderProduct" Target="OrderProduct.Order" Category="Contains" />
+<Link Source = "OrderProduct" Target="OrderProduct.Product" Category="Contains" />
+<Link Source = "OrderProduct" Target="OrderProduct.ID" Category="Contains" />
+<Link Source="OrderProduct" Target="Order" From="OrderProduct.OrderID" To="Order.ID" Name="OrderProduct -> Order" Annotations="Relational:Name: FK_OrderProduct_Order" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="OrderProduct" Target="Product" From="OrderProduct.ProductID" To="Product.ID" Name="OrderProduct -> Product" Annotations="Relational:Name: FK_OrderProduct_Product" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "OrderProduct" Target="OrderProduct.OrderID" Category="Contains" />
+<Link Source = "OrderProduct" Target="OrderProduct.ProductID" Category="Contains" />
+<Link Source = "OrderProduct" Target="OrderProduct.Quantity" Category="Contains" />
+<Link Source = "IModel" Target="Product" Category="Contains" />
+<Link Source = "PickUpPoint" Target="PickUpPoint.Orders" Category="Contains" />
+<Link Source = "PickUpPoint" Target="PickUpPoint.ID" Category="Contains" />
+<Link Source = "PickUpPoint" Target="PickUpPoint.Address" Category="Contains" />
+<Link Source = "IModel" Target="ProductCart" Category="Contains" />
+<Link Source = "Product" Target="Product.Category" Category="Contains" />
+<Link Source = "Product" Target="Product.OrderProducts" Category="Contains" />
+<Link Source = "Product" Target="Product.ProductCarts" Category="Contains" />
+<Link Source = "Product" Target="Product.Reviews" Category="Contains" />
+<Link Source = "Product" Target="Product.SavedProducts" Category="Contains" />
+<Link Source = "Product" Target="Product.ID" Category="Contains" />
+<Link Source="Product" Target="Category" From="Product.CategoryID" To="Category.ID" Name="Product -> Category" Annotations="Relational:Name: FK_Product_Category" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Product" Target="Product.CategoryID" Category="Contains" />
+<Link Source = "Product" Target="Product.Description" Category="Contains" />
+<Link Source = "Product" Target="Product.Image" Category="Contains" />
+<Link Source = "Product" Target="Product.IsAvailable" Category="Contains" />
+<Link Source = "Product" Target="Product.Name" Category="Contains" />
+<Link Source = "Product" Target="Product.PackageCount" Category="Contains" />
+<Link Source = "Product" Target="Product.Price" Category="Contains" />
+<Link Source = "Product" Target="Product.Rating" Category="Contains" />
+<Link Source = "Product" Target="Product.StockQuantity" Category="Contains" />
+<Link Source = "IModel" Target="Review" Category="Contains" />
+<Link Source = "ProductCart" Target="ProductCart.Cart" Category="Contains" />
+<Link Source = "ProductCart" Target="ProductCart.Product" Category="Contains" />
+<Link Source = "ProductCart" Target="ProductCart.ID" Category="Contains" />
+<Link Source="ProductCart" Target="Cart" From="ProductCart.CartID" To="Cart.ID" Name="ProductCart -> Cart" Annotations="Relational:Name: FK_ProductCart_Cart" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="ProductCart" Target="Product" From="ProductCart.ProductID" To="Product.ID" Name="ProductCart -> Product" Annotations="Relational:Name: FK_ProductCart_Product" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ProductCart" Target="ProductCart.CartID" Category="Contains" />
+<Link Source = "ProductCart" Target="ProductCart.ProductID" Category="Contains" />
+<Link Source = "ProductCart" Target="ProductCart.Quantity" Category="Contains" />
+<Link Source = "IModel" Target="Role" Category="Contains" />
+<Link Source = "Review" Target="Review.Product" Category="Contains" />
+<Link Source = "Review" Target="Review.User" Category="Contains" />
+<Link Source = "Review" Target="Review.ID" Category="Contains" />
+<Link Source="Review" Target="Product" From="Review.ProductID" To="Product.ID" Name="Review -> Product" Annotations="Relational:Name: FK_Review_Product" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Review" Target="User" From="Review.UserID" To="User.ID" Name="Review -> User" Annotations="Relational:Name: FK_Review_User" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Review" Target="Review.Date" Category="Contains" />
+<Link Source = "Review" Target="Review.Description" Category="Contains" />
+<Link Source = "Review" Target="Review.ProductID" Category="Contains" />
+<Link Source = "Review" Target="Review.Rating" Category="Contains" />
+<Link Source = "Review" Target="Review.UserID" Category="Contains" />
+<Link Source = "IModel" Target="Saved" Category="Contains" />
+<Link Source = "Role" Target="Role.Users" Category="Contains" />
+<Link Source = "Role" Target="Role.ID" Category="Contains" />
+<Link Source = "Role" Target="Role.Name" Category="Contains" />
+<Link Source = "IModel" Target="SavedProduct" Category="Contains" />
+<Link Source = "Saved" Target="Saved.SavedProducts" Category="Contains" />
+<Link Source = "Saved" Target="Saved.User" Category="Contains" />
+<Link Source = "Saved" Target="Saved.ID" Category="Contains" />
+<Link Source="Saved" Target="User" From="Saved.UserID" To="User.ID" Name="Saved -> User" Annotations="Relational:Name: FK_Saved_User" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Saved" Target="Saved.Name" Category="Contains" />
+<Link Source = "Saved" Target="Saved.UserID" Category="Contains" />
+<Link Source = "IModel" Target="Status" Category="Contains" />
+<Link Source = "SavedProduct" Target="SavedProduct.Product" Category="Contains" />
+<Link Source = "SavedProduct" Target="SavedProduct.Saved" Category="Contains" />
+<Link Source = "SavedProduct" Target="SavedProduct.ID" Category="Contains" />
+<Link Source="SavedProduct" Target="Product" From="SavedProduct.ProductID" To="Product.ID" Name="SavedProduct -> Product" Annotations="Relational:Name: FK_SavedProduct_Product" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="SavedProduct" Target="Saved" From="SavedProduct.SavedID" To="Saved.ID" Name="SavedProduct -> Saved" Annotations="Relational:Name: FK_SavedProduct_Saved" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "SavedProduct" Target="SavedProduct.ProductID" Category="Contains" />
+<Link Source = "SavedProduct" Target="SavedProduct.SavedID" Category="Contains" />
+<Link Source = "IModel" Target="TypeOfReceiving" Category="Contains" />
+<Link Source = "Status" Target="Status.Orders" Category="Contains" />
+<Link Source = "Status" Target="Status.ID" Category="Contains" />
+<Link Source = "Status" Target="Status.Name" Category="Contains" />
+<Link Source = "IModel" Target="User" Category="Contains" />
+<Link Source = "TypeOfReceiving" Target="TypeOfReceiving.Orders" Category="Contains" />
+<Link Source = "TypeOfReceiving" Target="TypeOfReceiving.ID" Category="Contains" />
+<Link Source = "TypeOfReceiving" Target="TypeOfReceiving.Name" Category="Contains" />
+<Link Source = "IModel" Target="User" Category="Contains" />
+<Link Source = "User" Target="User.Carts" Category="Contains" />
+<Link Source = "User" Target="User.Orders" Category="Contains" />
+<Link Source = "User" Target="User.Reviews" Category="Contains" />
+<Link Source = "User" Target="User.Role" Category="Contains" />
+<Link Source = "User" Target="User.Saveds" Category="Contains" />
+<Link Source = "User" Target="User.ID" Category="Contains" />
+<Link Source="User" Target="Role" From="User.RoleID" To="Role.ID" Name="User -> Role" Annotations="Relational:Name: FK_User_Role" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "User" Target="User.Login" Category="Contains" />
+<Link Source = "User" Target="User.Name" Category="Contains" />
+<Link Source = "User" Target="User.Password" Category="Contains" />
+<Link Source = "User" Target="User.RoleID" Category="Contains" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+  <Properties>
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="Field"  Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type"  Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />    
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass"  Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

@@ -191,7 +191,7 @@ public partial class MarketPlacePR4Context : DbContext
         {
             entity.ToTable("Saved");
 
-            entity.Property(e => e.Name).HasMaxLength(50);
+            //entity.Property(e => e.Name).HasMaxLength(50);
 
             entity.HasOne(d => d.User).WithMany(p => p.Saveds)
                 .HasForeignKey(d => d.UserID)
@@ -244,8 +244,7 @@ public partial class MarketPlacePR4Context : DbContext
                 .HasMaxLength(50);
             entity.Property(e => e.Password)
                 .IsRequired()
-                .HasMaxLength(50);
-
+                .HasMaxLength(255);
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
