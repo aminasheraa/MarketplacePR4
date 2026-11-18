@@ -1,4 +1,3 @@
-using API.DTO;
 using API.Intarfaces;
 using API.Models;
 using API.Services;
@@ -13,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MarketPlacePR4Context>(o =>
     o.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler 
+builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler
     = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -21,11 +20,12 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISavedProductService, SavedProductService>();
 
 var jwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!));
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
     AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = false, 
-        ValidateAudience = false, 
+        ValidateIssuer = false,
+        ValidateAudience = false,
         IssuerSigningKey = jwtKey
     });
 builder.Services.AddAuthorization();

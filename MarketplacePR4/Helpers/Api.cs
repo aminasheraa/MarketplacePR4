@@ -87,7 +87,7 @@ namespace MarketplacePR4.Helpers
             if (text.StartsWith("{"))   // стандартный JSON с описанием ошибки
                 return "Некорректный запрос (" + (int)status + ")";
 
-            return text.Trim('"');      // наши сообщения: «Логин уже занят» и т. п.
+            return text.Trim('"');      
         }
     }
 }

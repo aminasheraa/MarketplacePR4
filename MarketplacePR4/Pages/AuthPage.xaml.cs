@@ -49,12 +49,12 @@ namespace MarketplacePR4.Pages
                 ErrorText.Text = result.Error;
                 return;
             }
-            NavigationService?.Navigate(new Pages.HomePage());
+            NavigationService?.Navigate(new Pages.SavedProductPage());
         }
 
         private void ToAuth_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Pages.HomePage());
+            NavigationService?.Navigate(new Pages.RegisterPage());
         }
     }
 }
