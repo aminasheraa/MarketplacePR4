@@ -10,7 +10,6 @@ namespace API.Services
 {
     public class OrderService : IOrderService
     {
-
         private MarketPlacePR4Context _dbContext;
 
         public OrderService(MarketPlacePR4Context dbContext)
@@ -28,7 +27,7 @@ namespace API.Services
                         o.TotalPrice,
                         o.StatusID,
                         o.OrderProducts.Select(Op => new OrderProductDTO(
-                            Op.Product.Name,
+                            Op.Product.Name, 
                             Op.Product.Image,
                             Op.Product.Price,
                             Op.Quantity)).ToList(),
@@ -229,5 +228,11 @@ namespace API.Services
                 .ToListAsync();
         }
 
+            return new Result<bool>
+            {
+                Status = ResultStatus.NotFound,
+                Message = "Заказ не найден."
+            };
+        }
     }
 }

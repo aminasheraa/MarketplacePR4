@@ -6,6 +6,8 @@ using API.Interfaces;
 
 namespace API.Controller
 {
+    [ApiController]
+    [Route("api/order")]
     public class OrderController : ControllerBase
     {
         IOrderService _service;
@@ -15,8 +17,8 @@ namespace API.Controller
             _service = service;
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Менеджер")]
+        [HttpGet("List")]
+        //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -24,7 +26,7 @@ namespace API.Controller
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Менеджер,Администратор")]
+        //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -74,6 +76,20 @@ namespace API.Controller
         {
             var result = await _service.GetPickUpPointsAsync();
             return Ok(result);
+        [HttpGet("statuses")]
+        //[Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> GetAllStatuses()
+        {
+            var result = await _service.GetAllStatusesAsync();
+            return result.ToActionResult();
+        }
+
+        [HttpPut("{id}/status")]
+        //[Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateOrderStatusDTO statusDTO)
+        {
+            var result = await _service.UpdateOrderStatusAsync(id, statusDTO.StatusID);
+            return result.ToActionResult();
         }
     }
 }

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace MarketplacePR4.Helpers
 {
-
-    internal class OrderDTO
+    public class OrderDTO
     {
         public int ID {  get; set; }
         public int UserID { get; set; }
-        public DateTime DateOfOrder {  get; set; }
+        public DateTime DateOfOrder { get; set; }
         public decimal TotalPrice { get; set; }
         public int StatusID { get; set; }
         public List<OrderProductDTO> Products { get; set; }
