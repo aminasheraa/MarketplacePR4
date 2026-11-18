@@ -41,14 +41,39 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> CreateList([FromBody] List<PostOrderDTO> Products)
+        public async Task<IActionResult> CreateList(
+            [FromBody] List<PostOrderDTO> Products,
+            [FromQuery] int typeOfReceivingId,
+            [FromQuery] int? pickUpPointId,
+            [FromQuery] string address)
         {
             if (!int.TryParse(User.FindFirst("sub")?.Value, out int userId))
                 return Unauthorized();
 
-            var result = await _service.PostListAsync(userId, Products);
+            var result = await _service.PostListAsync(
+                userId,
+                Products,
+                typeOfReceivingId,
+                pickUpPointId,
+                address);
+
             return result.ToActionResult();
+        }
+
+        [HttpGet("ReceivingTypes")]
+        public async Task<IActionResult> GetReceivingTypes()
+        {
+            var result = await _service.GetReceivingTypesAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("PickUpPoints")]
+        public async Task<IActionResult> GetPickUpPoints()
+        {
+            var result = await _service.GetPickUpPointsAsync();
+            return Ok(result);
         }
     }
 }
