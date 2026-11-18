@@ -52,7 +52,7 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border  Margin="20,15" BorderBrush="#3A2119" BorderThickness="3" Background="#D9CBC2" CornerRadius="12" Width="325" Height="240">
+                    <Border  Margin="20,15" BorderBrush="#3A2119" BorderThickness="3" Background="#D9CBC2" CornerRadius="12" Width="330" Height="240">
                         <Grid Margin="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

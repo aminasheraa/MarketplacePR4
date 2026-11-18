@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
 using System.Net.Http.Json;
+using MarketplacePR4.Helpers;
 
 namespace MarketplacePR4.Pages
 {
@@ -23,7 +24,7 @@ namespace MarketplacePR4.Pages
     public partial class ReviewsPage : Page
     {
         HttpClient client = new HttpClient();
-        //List<ReviewDTO> reviews;
+        List<ReviewDTO> reviews;
 
         public ReviewsPage()
         {
@@ -43,7 +44,7 @@ namespace MarketplacePR4.Pages
                 return;
             }
 
-/*            reviews = await response.Content.ReadFromJsonAsync<List<ReviewDTO>>();
+            reviews = await response.Content.ReadFromJsonAsync<List<ReviewDTO>>();
             if (reviews == null || reviews.Count == 0)
             {
                 noReviewsTBl.Visibility = Visibility.Visible;
@@ -55,12 +56,12 @@ namespace MarketplacePR4.Pages
 
                 reviewsList.Visibility = Visibility.Visible;
                 reviewsList.ItemsSource = reviews;
-            }*/
+            }
         }
 
         private void ApplyFilters()
         {
-            /*if (reviews != null)
+            if (reviews != null)
             {
                 List<ReviewDTO> sortedReviews = reviews;
 
@@ -77,7 +78,7 @@ namespace MarketplacePR4.Pages
                     sortedReviews = sortedReviews.OrderByDescending(sr => sr.Rating).ToList();
 
                 reviewsList.ItemsSource = sortedReviews;
-            }*/
+            }
         }
 
         private void searchTB_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,7 +96,7 @@ namespace MarketplacePR4.Pages
             var btn = sender as Button;
             if (btn == null) return;
 
-            /*ReviewDTO review = btn.DataContext as ReviewDTO;
+            ReviewDTO review = btn.DataContext as ReviewDTO;
             if (review == null) return;
 
             var response = await client.GetAsync($"api/review/{review.ID}");
@@ -112,7 +113,7 @@ namespace MarketplacePR4.Pages
                 MessageBoxResult res = MessageBox.Show($"Вы действительно хотите удалить отзыв №{realReview.ID}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
-                    var responseDel = await client.DeleteAsync($"api/reviews/del/{realReview.ID}"); 
+                    var responseDel = await client.DeleteAsync($"api/reviews/del/{realReview.ID}");
                     if (!responseDel.IsSuccessStatusCode)
                     {
                         string error = await responseDel.Content.ReadAsStringAsync();
@@ -125,7 +126,7 @@ namespace MarketplacePR4.Pages
                         LoadData();
                     }
                 }
-            }*/
+            }
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)

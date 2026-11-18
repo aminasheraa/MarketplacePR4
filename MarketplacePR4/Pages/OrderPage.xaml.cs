@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
 using System.Net.Http.Json;
+using MarketplacePR4.Helpers;
 
 namespace MarketplacePR4.Pages
 {
@@ -44,9 +45,9 @@ namespace MarketplacePR4.Pages
                 return;
             }
 
-            //ДТОшки не работают
-            /*OrderDTO order = await response.Content.ReadFromJsonAsync<OrderDTO>();
-            DataContext = order;*/
+            OrderDTO order = await response.Content.ReadFromJsonAsync<OrderDTO>();
+            DataContext = order;
+            productsList.ItemsSource = order.Products.ToList();
 
             var statusResponse = await client.GetAsync("api/order/statuses");
             if (!statusResponse.IsSuccessStatusCode)
@@ -56,12 +57,10 @@ namespace MarketplacePR4.Pages
                 return;
             }
 
-            //ДТОшки не работают
-            /*List<StatusDTO> statuses = await statusResponse.Content.ReadFromJsonAsync<List<StatusDTO>>();
-            statusCB.ItemsSource = statuses;*/
+            List<StatusDTO> statuses = await statusResponse.Content.ReadFromJsonAsync<List<StatusDTO>>();
+            statusCB.ItemsSource = statuses;
 
-            //if (User.currentUser.Role.Name == "Администратор") //должно быть, когда будет авторизация
-            if (true) // временно, пока нет авторизации
+            if (Session.IsAdmin)
             {
                 saveBtn.Visibility = Visibility.Visible;
                 statusCB.Visibility = Visibility.Visible;
@@ -69,7 +68,7 @@ namespace MarketplacePR4.Pages
 
                 statusTBl.Visibility = Visibility.Collapsed;
 
-                //statusCB.SelectedValue = order.StatusID; //не могу получить заказ без ДТО
+                statusCB.SelectedValue = order.StatusID;
             }
             else
             {
@@ -78,13 +77,13 @@ namespace MarketplacePR4.Pages
                 userTBl.Visibility = Visibility.Collapsed;
 
                 statusTBl.Visibility = Visibility.Visible;
-                //statusTBl.Text = statuses.FirstOrDefault(s => s.ID == order.StatusID)?.Name; //не могу получить статусы без ДТО
+                statusTBl.Text = statuses.FirstOrDefault(s => s.ID == order.StatusID)?.Name;
             }
         }
 
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (statusCB.Visibility == Visibility.Visible)
+            if (Session.IsAdmin)
             {
                 if (statusCB.SelectedValue == null)
                 {
@@ -92,7 +91,10 @@ namespace MarketplacePR4.Pages
                     return;
                 }
 
-                /*UpdateOrderStatusDTO statusDTO = new UpdateOrderStatusDTO((int)statusCB.SelectedValue);
+                int newStatusID = Convert.ToInt32(statusCB.SelectedValue);
+
+                UpdateOrderStatusDTO statusDTO = new UpdateOrderStatusDTO();
+                statusDTO.StatusID = newStatusID;
 
                 var response = await client.PutAsJsonAsync($"api/order/{orderID}/status", statusDTO);
                 if (response.IsSuccessStatusCode)
@@ -104,7 +106,7 @@ namespace MarketplacePR4.Pages
                 {
                     string error = await response.Content.ReadAsStringAsync();
                     MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }*/
+                }
             }
         }
 

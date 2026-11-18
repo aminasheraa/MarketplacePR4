@@ -27,7 +27,8 @@ namespace API.Services
                         o.TotalPrice,
                         o.StatusID,
                         o.OrderProducts.Select(Op => new OrderProductDTO(
-                            Op.Product.Name,
+                            Op.Product.Name, 
+                            Op.Product.Image,
                             Op.Product.Price,
                             Op.Quantity)).ToList(),
                         string.IsNullOrWhiteSpace(o.AddressOfDelivery) ? o.PickUpPoint.Address.ToString() : o.AddressOfDelivery.ToString()
@@ -51,6 +52,7 @@ namespace API.Services
                         o.StatusID,
                         o.OrderProducts.Select(Op => new OrderProductDTO(
                             Op.Product.Name,
+                            Op.Product.Image,
                             Op.Product.Price,
                             Op.Quantity)).ToList(),
                         string.IsNullOrWhiteSpace(o.AddressOfDelivery) ? o.PickUpPoint.Address.ToString() : o.AddressOfDelivery.ToString()
@@ -82,6 +84,7 @@ namespace API.Services
                     o.StatusID,
                     o.OrderProducts.Select(Op => new OrderProductDTO(
                             Op.Product.Name,
+                            Op.Product.Image,
                             Op.Product.Price,
                             Op.Quantity)).ToList(),
                     string.IsNullOrWhiteSpace(o.AddressOfDelivery) ? o.PickUpPoint.Address.ToString() : o.AddressOfDelivery.ToString()

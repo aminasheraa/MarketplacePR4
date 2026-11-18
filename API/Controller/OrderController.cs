@@ -6,6 +6,8 @@ using API.Interfaces;
 
 namespace API.Controller
 {
+    [ApiController]
+    [Route("api/order")]
     public class OrderController : ControllerBase
     {
         IOrderService _service;
@@ -15,7 +17,7 @@ namespace API.Controller
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("List")]
         //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
@@ -41,7 +43,7 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
-        [HttpPost]
+        [HttpPost("post")]
         public async Task<IActionResult> CreateList([FromBody] List<PostOrderDTO> Products)
         {
             if (!int.TryParse(User.FindFirst("sub")?.Value, out int userId))
