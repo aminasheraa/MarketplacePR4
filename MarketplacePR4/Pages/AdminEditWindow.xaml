@@ -1,0 +1,59 @@
+﻿<Window x:Class="MarketplacePR4.Pages.AdminEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarketplacePR4.Pages"
+        mc:Ignorable="d"
+        Title="AdminEditWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="ProductWin">
+            <StackPanel Margin="20">
+                <StackPanel HorizontalAlignment="Center" Width="400">
+                    <TextBlock Text="Редактирование товара" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Название товара:"/>
+                    <TextBox/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Категория товара:"/>
+                        <ComboBox/>
+                        <Button Content="Добаавить категорию"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Цена:"/>
+                    <TextBox/>
+                    <TextBlock Text="Описание товара:"/>
+                    <TextBox/>
+                    <TextBlock Text="Количество на складе:"/>
+                    <TextBox/>
+                    <TextBlock Text="Количество в упаковке:"/>
+                    <TextBox/>
+                    <TextBlock Text="Наличие:"/>
+                    <TextBox/>
+                    <Button Content="Сохранить" Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+    <DataTemplate x:Key="PickUpWin">
+        <StackPanel HorizontalAlignment="Center" Width="400">
+            <TextBlock Text="Редактирование пункта выдачи" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Адресс:"/>
+            <TextBox/>
+            <Button Content="Сохранить" Margin="10"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CategoryWin">
+        <StackPanel HorizontalAlignment="Center" Width="400">
+            <TextBlock Text="Редактирование категории товара" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Название категории:"/>
+            <TextBox/>
+            <Button Content="Сохранить" Margin="10"/>
+        </StackPanel>
+    </DataTemplate>
+   </Window.Resources>
+
+    <Grid>
+        <ContentControl x:Name="EditContent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
