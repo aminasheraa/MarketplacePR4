@@ -10,6 +10,7 @@ using System.IO;
 
 namespace MarketplacePR4.Helpers
 {
+    // Переделанный файл сохранения
     public class SavedProductCard
     {
         private static readonly CultureInfo Ru = CultureInfo.GetCultureInfo("ru-RU");
