@@ -9,8 +9,9 @@ namespace API.Interfaces
         Task<Result<OrderDTO>> GetByIdAsync(int OrderID);
         Task<Result<List<OrderDTO>>> GetByUserIdAsync(int userID);
         Task<Result<int>> PostListAsync(int userID, List<PostOrderDTO> Products, int typeOfReceivingId, int? pickUpPointId, string address);
-
         Task<List<TypeOfReceiving>> GetReceivingTypesAsync();
         Task<List<PickUpPoint>> GetPickUpPointsAsync();
+        Task<Result<List<StatusDTO>>> GetAllStatusesAsync();
+        Task<Result<bool>> UpdateOrderStatusAsync(int orderID, int statusID);
     }
 }

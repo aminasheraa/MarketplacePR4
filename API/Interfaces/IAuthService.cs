@@ -1,7 +1,7 @@
 ﻿using API.DTO;
 using API.Models;
 
-namespace API.Intarfaces
+namespace API.Interfaces
 {
     public enum RegisterStatus { Ok, InvalidData, LoginToken, RoleNotFound}
     public record RegisterResult(RegisterStatus Status, User? User = null);

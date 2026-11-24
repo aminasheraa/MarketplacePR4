@@ -3,7 +3,7 @@ using API.DTO;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using API.Intarfaces;
+using API.Interfaces;
 
 namespace API.Controller
 {

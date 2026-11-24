@@ -228,6 +228,56 @@ namespace API.Services
                 .ToListAsync();
         }
 
+        public async Task<Result<List<StatusDTO>>> GetAllStatusesAsync()
+        {
+            List<StatusDTO> statuses = await _dbContext.Statuses
+                .Select(s => new StatusDTO(
+                    s.ID,
+                    s.Name
+                    )
+                ).ToListAsync();
+
+            return new Result<List<StatusDTO>>
+            {
+                Status = ResultStatus.Success,
+                Data = statuses
+            };
+        }
+
+        public async Task<Result<bool>> UpdateOrderStatusAsync(int orderID, int statusID)
+        {
+            Order? order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.ID == orderID);
+            if (order != null)
+            {
+                if (!await _dbContext.Statuses.AnyAsync(s => s.ID == statusID))
+                {
+                    return new Result<bool>
+                    {
+                        Status = ResultStatus.NotFound,
+                        Message = "Такой статус не найден."
+                    };
+                }
+
+                if (order.StatusID == statusID)
+                {
+                    return new Result<bool>
+                    {
+                        Status = ResultStatus.InvalidData,
+                        Message = "Заказ итак имеет этот статус."
+                    };
+                }
+
+                order.StatusID = statusID;
+                await _dbContext.SaveChangesAsync();
+
+                return new Result<bool>
+                {
+                    Status = ResultStatus.Success,
+                    Data = true,
+                    Message = "Статус заказа успешно изменён!"
+                };
+            }
+
             return new Result<bool>
             {
                 Status = ResultStatus.NotFound,

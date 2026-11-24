@@ -1,7 +1,7 @@
 ﻿using API.DTO;
 
 
-namespace API.Intarfaces
+namespace API.Interfaces
 {
     public enum SavedProductStatus { Ok, ProductNotFound, AlreadyExists, NotInSavedProduct}
     public interface ISavedProductService

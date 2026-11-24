@@ -1,7 +1,7 @@
 ﻿using API.Models;
 using API.DTO;
 using Microsoft.EntityFrameworkCore;
-using API.Intarfaces;
+using API.Interfaces;
 
 
 namespace API.Services
