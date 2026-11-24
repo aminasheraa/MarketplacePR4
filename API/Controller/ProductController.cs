@@ -36,7 +36,7 @@ namespace API.Controller
 
         // Добавление товара
         [HttpPost]
-        [Authorize(Roles = "Менеджер,Администратор")]
+        [Authorize(Roles = "Администратор")]
         public async Task<IActionResult> Create([FromBody] ProductDTO product)
         {
             var result = await _service.PostAsync(product);
@@ -45,7 +45,7 @@ namespace API.Controller
 
         // Изменение товара
         [HttpPut("{id}")]
-        [Authorize(Roles = "Менеджер,Администратор")]
+        [Authorize(Roles = "Администратор")]
         public async Task<IActionResult> Update(int id, [FromBody] ProductDTO product)
         {
             var result = await _service.PutAsync(id, product);
