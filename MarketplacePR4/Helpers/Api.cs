@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +7,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Newtonsoft.Json;
+
 
 namespace MarketplacePR4.Helpers
 {
@@ -87,7 +88,7 @@ namespace MarketplacePR4.Helpers
             if (text.StartsWith("{"))   // стандартный JSON с описанием ошибки
                 return "Некорректный запрос (" + (int)status + ")";
 
-            return text.Trim('"');      
+            return text.Trim('"');
         }
     }
 }

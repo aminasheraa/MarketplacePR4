@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:MarketplacePR4.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SavedProductPage"
-      Loaded="Page_Loaded">
+      Title="SavedProductPage">
 
     <Grid>
         <Grid.RowDefinitions>
