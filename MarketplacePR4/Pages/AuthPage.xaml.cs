@@ -50,7 +50,7 @@ namespace MarketplacePR4.Pages
                 ErrorText.Text = result.Error;
                 return;
             }
-            NavigationService?.Navigate(new Pages.SavedProductPage());
+            NavigationService?.Navigate(new Pages.TestPage());
         }
 
         private void ToAuth_Click(object sender, RoutedEventArgs e)

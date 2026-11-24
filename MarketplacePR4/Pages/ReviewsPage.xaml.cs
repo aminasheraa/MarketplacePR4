@@ -23,28 +23,34 @@ namespace MarketplacePR4.Pages
     /// </summary>
     public partial class ReviewsPage : Page
     {
-        HttpClient client = new HttpClient();
         List<ReviewDTO> reviews;
 
         public ReviewsPage()
         {
-            client.BaseAddress = new Uri("http://localhost:5009");
-
             InitializeComponent();
             LoadData();
         }
 
         private async void LoadData()
         {
-            var response = await client.GetAsync("api/review/List");
+            var response = await Api.Http.GetAsync("api/review/List");
+
             if (!response.IsSuccessStatusCode)
             {
-                string error = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    MessageBox.Show("Необходимо авторизоваться.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    MessageBox.Show("У вас нет прав для просмотра отзывов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    MessageBox.Show("Отзывы не найдены.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Не удалось загрузить отзывы.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
 
             reviews = await response.Content.ReadFromJsonAsync<List<ReviewDTO>>();
+
             if (reviews == null || reviews.Count == 0)
             {
                 noReviewsTBl.Visibility = Visibility.Visible;
@@ -53,7 +59,6 @@ namespace MarketplacePR4.Pages
             else
             {
                 noReviewsTBl.Visibility = Visibility.Collapsed;
-
                 reviewsList.Visibility = Visibility.Visible;
                 reviewsList.ItemsSource = reviews;
             }
@@ -99,7 +104,7 @@ namespace MarketplacePR4.Pages
             ReviewDTO review = btn.DataContext as ReviewDTO;
             if (review == null) return;
 
-            var response = await client.GetAsync($"api/review/{review.ID}");
+            var response = await Api.Http.GetAsync($"api/review/{review.ID}");
             if (!response.IsSuccessStatusCode)
             {
                 string error = await response.Content.ReadAsStringAsync();
@@ -113,11 +118,18 @@ namespace MarketplacePR4.Pages
                 MessageBoxResult res = MessageBox.Show($"Вы действительно хотите удалить отзыв №{realReview.ID}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
-                    var responseDel = await client.DeleteAsync($"api/reviews/del/{realReview.ID}");
+                    var responseDel = await Api.Http.DeleteAsync($"api/review/del/{realReview.ID}");
                     if (!responseDel.IsSuccessStatusCode)
                     {
-                        string error = await responseDel.Content.ReadAsStringAsync();
-                        MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        if (responseDel.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                            MessageBox.Show("Необходимо авторизоваться.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (responseDel.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                            MessageBox.Show("У вас нет прав для удаления отзывов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (responseDel.StatusCode == System.Net.HttpStatusCode.NotFound)
+                            MessageBox.Show("Отзыв не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                            MessageBox.Show("Не удалось удалить отзыв.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
                         return;
                     }
                     else

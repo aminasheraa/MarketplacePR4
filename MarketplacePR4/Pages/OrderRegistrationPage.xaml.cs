@@ -16,10 +16,10 @@ namespace MarketplacePR4.Pages
     public partial class OrderRegistrationPage : Page
     {
         private const string CartApiUrl =
-            "https://localhost:7151/api/cart/";
+            "http://localhost:5009/api/cart/";
 
         private const string OrderApiUrl =
-            "https://localhost:7151/api/Order/";
+            "http://localhost:5009/api/Order/";
 
         private static readonly HttpClient Client = new HttpClient();
 

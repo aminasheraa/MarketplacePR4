@@ -23,12 +23,10 @@ namespace MarketplacePR4.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
-        HttpClient client = new HttpClient();
         int orderID;
 
         public OrderPage(int id)
         {
-            client.BaseAddress = new Uri("http://localhost:5009");
             orderID = id;
 
             InitializeComponent();
@@ -37,11 +35,19 @@ namespace MarketplacePR4.Pages
 
         private async void LoadData()
         {
-            var response = await client.GetAsync($"api/order/{orderID}");
+            var response = await Api.Http.GetAsync($"api/order/{orderID}");
+
             if (!response.IsSuccessStatusCode)
             {
-                string error = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    MessageBox.Show("Необходимо авторизоваться.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    MessageBox.Show("У вас нет прав для просмотра заказа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    MessageBox.Show("Заказ не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Не удалось загрузить заказ.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
 
@@ -49,11 +55,17 @@ namespace MarketplacePR4.Pages
             DataContext = order;
             productsList.ItemsSource = order.Products.ToList();
 
-            var statusResponse = await client.GetAsync("api/order/statuses");
+            var statusResponse = await Api.Http.GetAsync("api/order/statuses");
+
             if (!statusResponse.IsSuccessStatusCode)
             {
-                string error = await statusResponse.Content.ReadAsStringAsync();
-                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (statusResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    MessageBox.Show("Необходимо авторизоваться.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (statusResponse.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    MessageBox.Show("У вас нет прав для просмотра статусов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Не удалось загрузить статусы заказов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
 
@@ -96,7 +108,8 @@ namespace MarketplacePR4.Pages
                 UpdateOrderStatusDTO statusDTO = new UpdateOrderStatusDTO();
                 statusDTO.StatusID = newStatusID;
 
-                var response = await client.PutAsJsonAsync($"api/order/{orderID}/status", statusDTO);
+                var response = await Api.Http.PutAsJsonAsync($"api/order/{orderID}/status", statusDTO);
+
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Статус заказа успешно изменён!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -104,8 +117,16 @@ namespace MarketplacePR4.Pages
                 }
                 else
                 {
-                    string error = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        MessageBox.Show("Необходимо авторизоваться.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                        MessageBox.Show("У вас нет прав для изменения статуса заказа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        MessageBox.Show("Заказ не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        MessageBox.Show("Некорректный статус заказа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        MessageBox.Show("Не удалось изменить статус заказа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

@@ -1,8 +1,9 @@
-﻿using API.Models;
+﻿using API.DTO;
+using API.Interfaces;
+using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using API.DTO;
-using API.Interfaces;
+using System.Security.Claims;
 
 namespace API.Controller
 {
@@ -42,7 +43,7 @@ namespace API.Controller
         [HttpPost("post")]
         public async Task<IActionResult> PostReview(PostReviewDTO postReviewDTO)
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userID))
                 return Unauthorized();
 
             var result = await _service.PostAsync(userID, postReviewDTO);

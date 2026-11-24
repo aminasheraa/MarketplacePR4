@@ -1,8 +1,9 @@
-﻿using API.Models;
+﻿using API.DTO;
+using API.Interfaces;
+using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using API.DTO;
-using API.Interfaces;
+using System.Security.Claims;
 
 namespace API.Controller
 {
@@ -35,7 +36,7 @@ namespace API.Controller
         [HttpGet("My")]
         public async Task<IActionResult> GetAllByUser()
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userId))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userId))
                 return Unauthorized();
 
             var result = await _service.GetByUserIdAsync(userId);
@@ -49,7 +50,7 @@ namespace API.Controller
             [FromQuery] int? pickUpPointId,
             [FromQuery] string address)
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userId))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userId))
                 return Unauthorized();
 
             var result = await _service.PostListAsync(

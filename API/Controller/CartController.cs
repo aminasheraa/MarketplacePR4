@@ -4,6 +4,7 @@ using API.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Controller
 {
@@ -22,7 +23,7 @@ namespace API.Controller
         [HttpGet("My")]
         public async Task<IActionResult> GetMyCart()
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userID))
                 return Unauthorized();
 
             var result = await _service.GetByUserIdAsync(userID);
@@ -33,7 +34,7 @@ namespace API.Controller
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] PostOrderDTO product)
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userID))
                 return Unauthorized();
 
             var result = await _service.AddAsync(userID, product);
@@ -44,7 +45,7 @@ namespace API.Controller
         [HttpPut("{id}/{quantity}")]
         public async Task<IActionResult> UpdateQuantity(int id, int quantity)
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userID))
                 return Unauthorized();
 
             var result = await _service.UpdateQuantityAsync(userID, id, quantity);
@@ -55,7 +56,7 @@ namespace API.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (!int.TryParse(User.FindFirst("sub")?.Value, out int userID))
+            if (!int.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userID))
                 return Unauthorized();
 
             var result = await _service.DeleteAsync(userID, id);

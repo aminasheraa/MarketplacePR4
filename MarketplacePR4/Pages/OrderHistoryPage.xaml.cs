@@ -14,7 +14,7 @@ namespace MarketplacePR4.Pages
 {
     public partial class OrderHistoryPage : Page
     {
-        private const string ApiUrl = "https://localhost:7151/api/Order/";
+        private const string ApiUrl = "http://localhost:5009/api/Order/";
 
         private static readonly HttpClient Client = new HttpClient();
 

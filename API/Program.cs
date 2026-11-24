@@ -22,6 +22,7 @@ builder.Services.AddScoped<ISavedProductService, SavedProductService>();
 builder.Services.AddDbContext<MarketPlacePR4Context>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 var jwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!));
 
@@ -43,9 +44,6 @@ app.MapControllers();
 
 
 app.MapControllers();
-
-
-app.UseHttpsRedirection();
 
 app.Run();
 

@@ -14,7 +14,7 @@ namespace MarketplacePR4.Pages
 {
     public partial class CartPage : Page
     {
-        private const string ApiUrl = "https://localhost:7151/api/Cart/";
+        private const string ApiUrl = "http://localhost:5009/api/Cart/";
 
         private static readonly HttpClient Client = new HttpClient();
 
