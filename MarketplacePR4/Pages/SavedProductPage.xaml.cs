@@ -47,7 +47,7 @@ namespace MarketplacePR4.Pages
 
             var result = await Api.SendAsync<List<SavedProductItemDto>>(HttpMethod.Get, "savedproduct");
 
-            if(result.Status == HttpStatusCode.Unauthorized)
+            if (result.Status == HttpStatusCode.Unauthorized)
             {
                 Session.End();
                 MessageBox.Show("Сессия истекла, Войдите в аккаунт заново");
@@ -62,7 +62,7 @@ namespace MarketplacePR4.Pages
             }
 
             SavedProductList.ItemsSource = result.Data.Select(i => new SavedProductCard(i)).ToList();
-            InfoText.Text = result.Data.Count == 0 ? "В избранном пока ничего нет": null;
+            InfoText.Text = result.Data.Count == 0 ? "В избранном пока ничего нет" : null;
         }
 
         private static SavedProductCard CardOf(object sender)

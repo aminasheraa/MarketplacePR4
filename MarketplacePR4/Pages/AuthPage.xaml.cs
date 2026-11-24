@@ -26,6 +26,7 @@ namespace MarketplacePR4.Pages
         {
             InitializeComponent();
             LoginBox.Text = login;
+
         }
 
         private async void RegisterBtn_Click(object sender, RoutedEventArgs e)

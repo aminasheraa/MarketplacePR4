@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace MarketplacePR4.Helpers
 {
-    // Что отправляем на сервер
     public class RegisterRequestDto
     {
         public string Name { get; set; }

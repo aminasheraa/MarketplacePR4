@@ -27,7 +27,6 @@ namespace MarketplacePR4.Pages
         {
             InitializeComponent();
         }
-
         private async void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             ErrorText.Text = null;
@@ -35,12 +34,12 @@ namespace MarketplacePR4.Pages
             var login = LoginBox.Text.Trim();
             var password = PasswordBox.Password;
 
-            if(name == null || login == null || password == null)
+            if (name == null || login == null || password == null)
             {
                 ErrorText.Text = "Заполните все поля";
                 return;
             }
-            if(password != ReapeatBox.Password)
+            if (password != ReapeatBox.Password)
             {
                 ErrorText.Text = "Пароли не совпадают";
                 return;
@@ -70,7 +69,7 @@ namespace MarketplacePR4.Pages
                 return;
             }
 
-            NavigationService?.Navigate(new Pages.HomePage());
+            NavigationService?.Navigate(new Pages.SavedProductPage());
         }
 
         private void ToLogin_Click(object sender, RoutedEventArgs e)
