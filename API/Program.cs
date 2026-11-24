@@ -1,4 +1,4 @@
-using API.Intarfaces;
+using API.Interfaces;
 using API.Models;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,6 +19,10 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISavedProductService, SavedProductService>();
 
+builder.Services.AddDbContext<MarketPlacePR4Context>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 var jwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
@@ -29,19 +33,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
         IssuerSigningKey = jwtKey
     });
 builder.Services.AddAuthorization();
-using API.Interfaces;
-using API.Models;
-using API.Services;
-
-var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
-builder.Services.AddDbContext<MarketPlacePR4Context>();
-
-builder.Services.AddScoped<ICartService,CartService>();
-
-builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 app.UseAuthentication();

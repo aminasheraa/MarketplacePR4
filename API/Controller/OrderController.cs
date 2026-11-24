@@ -18,7 +18,7 @@ namespace API.Controller
         }
 
         [HttpGet("List")]
-        //[Authorize(Roles = "Администратор")]
+        [Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -26,7 +26,6 @@ namespace API.Controller
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -42,7 +41,6 @@ namespace API.Controller
             var result = await _service.GetByUserIdAsync(userId);
             return result.ToActionResult();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> CreateList(
@@ -64,6 +62,22 @@ namespace API.Controller
             return result.ToActionResult();
         }
 
+        [HttpGet("statuses")]
+        [Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> GetAllStatuses()
+        {
+            var result = await _service.GetAllStatusesAsync();
+            return result.ToActionResult();
+        }
+
+        [HttpPut("{id}/status")]
+        [Authorize(Roles = "Администратор")]
+        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateOrderStatusDTO statusDTO)
+        {
+            var result = await _service.UpdateOrderStatusAsync(id, statusDTO.StatusID);
+            return result.ToActionResult();
+        }
+
         [HttpGet("ReceivingTypes")]
         public async Task<IActionResult> GetReceivingTypes()
         {
@@ -76,20 +90,6 @@ namespace API.Controller
         {
             var result = await _service.GetPickUpPointsAsync();
             return Ok(result);
-        [HttpGet("statuses")]
-        //[Authorize(Roles = "Администратор")]
-        public async Task<IActionResult> GetAllStatuses()
-        {
-            var result = await _service.GetAllStatusesAsync();
-            return result.ToActionResult();
-        }
-
-        [HttpPut("{id}/status")]
-        //[Authorize(Roles = "Администратор")]
-        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateOrderStatusDTO statusDTO)
-        {
-            var result = await _service.UpdateOrderStatusAsync(id, statusDTO.StatusID);
-            return result.ToActionResult();
         }
     }
 }

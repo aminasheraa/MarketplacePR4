@@ -18,7 +18,7 @@ namespace API.Controller
         }
 
         [HttpGet("List")]
-        //[Authorize(Roles = "Администратор")]
+        [Authorize(Roles = "Администратор")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -50,7 +50,7 @@ namespace API.Controller
         }
 
         [HttpDelete("del/{reviewID}")]
-        //[Authorize(Roles = "Администратор")]
+        [Authorize(Roles = "Администратор")]
         public async Task<IActionResult> DeleteReview(int reviewID)
         {
             var result = await _service.DeleteAsync(reviewID);
