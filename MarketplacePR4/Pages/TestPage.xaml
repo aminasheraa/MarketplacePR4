@@ -14,6 +14,7 @@
             <Button x:Name="ordersListBtn" Content="Заказы" Margin="5" Click="ordersListBtn_Click"/>
             <Button x:Name="cartBtn" Content="Корзина" Margin="5" Click="cartBtn_Click"/>
             <Button x:Name="reviewsBtn" Content="Отзывы" Margin="5" Click="reviewsBtn_Click"/>
+            <Button x:Name="adminEditBtn" Content="Окно редактирования админа" Margin="5" Click="adminEditBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
