@@ -107,7 +107,6 @@
     <Compile Include="Helpers\OrderDTO.cs" />
     <Compile Include="Helpers\OrderProductDTO.cs" />
     <Compile Include="Helpers\PostOrderDTO.cs" />
-    <Compile Include="Helpers\ProductDTO.cs" />
     <Compile Include="Helpers\PostReviewDTO.cs" />
     <Compile Include="Helpers\ReviewDTO.cs" />
     <Compile Include="Helpers\Session.cs" />
@@ -116,6 +115,9 @@
     <Compile Include="Helpers\Api.cs" />
     <Compile Include="Helpers\ApiModels.cs" />
     <Compile Include="Helpers\SavedProductCard.cs" />
+    <Compile Include="Helpers\CategoryDTO.cs" />
+    <Compile Include="Helpers\PickUpPointDTO.cs" />
+    <Compile Include="Helpers\ProductDTO.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -156,6 +158,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AdminEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\CartPage.xaml.cs">
@@ -184,6 +190,9 @@
     </Compile>
     <Compile Include="Pages\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminEditWindow.xaml.cs">
+      <DependentUpon>AdminEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
