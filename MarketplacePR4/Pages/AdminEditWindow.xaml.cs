@@ -40,7 +40,7 @@ namespace MarketplacePR4.Pages
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync(
-                    "https://localhost:7001/api/Category"
+                    "https://localhost:5009/api/Category"
                 );
 
                 if (!response.IsSuccessStatusCode)

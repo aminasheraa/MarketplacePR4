@@ -44,5 +44,11 @@ namespace MarketplacePR4.Pages
         {
             NavigationService.Navigate(new ReviewsPage());
         }
+
+        private void adminEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new AdminEditWindow();
+            win.ShowDialog();
+        }
     }
 }
