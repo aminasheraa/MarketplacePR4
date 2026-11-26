@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:MarketplacePR4"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="">
+            <StackPanel>
+                
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>

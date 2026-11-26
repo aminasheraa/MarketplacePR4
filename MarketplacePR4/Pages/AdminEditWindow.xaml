@@ -1,0 +1,96 @@
+﻿<Window x:Class="MarketplacePR4.Pages.AdminEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование"
+        Height="550" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+
+        <!-- Редактирование товара -->
+        <StackPanel x:Name="ProductPanel"
+                    Visibility="Visible"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="400">
+
+            <TextBlock Text="Редактирование товара"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Название товара:"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Категория товара:"/>
+            <ComboBox x:Name="ProductCategoryComboBox"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="ID"
+                      SelectedValue="{Binding CategoryID, Mode=TwoWay}"/>
+
+            <Button Content="Добавить категорию"
+                    Click="OpenAddCategory_Click"
+                    Margin="0,5"/>
+
+            <TextBlock Text="Цена:"/>
+            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Описание товара:"/>
+            <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+                     Height="60"
+                     AcceptsReturn="True"/>
+
+            <TextBlock Text="Количество на складе:"/>
+            <TextBox Text="{Binding StockQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Количество в упаковке:"/>
+            <TextBox Text="{Binding PackageCount, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Наличие:"/>
+            <CheckBox Content="В наличии"
+                      IsChecked="{Binding IsAvailable}"/>
+
+            <Button Content="Сохранить"
+                    Click="SaveProduct_Click"
+                    Margin="10"/>
+        </StackPanel>
+
+        <!-- Добавление и редактирование категории -->
+        <StackPanel x:Name="CategoryPanel"
+                    Visibility="Collapsed"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="400">
+
+            <TextBlock Text="Управление категориями"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Список категорий:"/>
+
+            <ListBox x:Name="CategoryList"
+                     DisplayMemberPath="Name"
+                     Height="150"
+                     Margin="0,5"/>
+
+            <Button Content="Редактировать выбранную категорию"
+                    Click="EditSelectedCategory_Click"
+                    Margin="0,5"/>
+
+            <TextBlock Text="Название категории:"/>
+
+            <TextBox x:Name="CategoryNameTextBox"
+                     Margin="0,5"/>
+
+            <Button Content="Добавить категорию"
+                    Click="AddCategory_Click"
+                    Margin="0,5"/>
+
+            <Button Content="Сохранить изменения"
+                    Click="SaveCategory_Click"
+                    Margin="0,5"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
