@@ -11,7 +11,7 @@ public partial class Saved
 
     public int UserID { get; set; }
 
-    public string Name { get; set; }
+    //public string Name { get; set; }
 
     public virtual ICollection<SavedProduct> SavedProducts { get; set; } = new List<SavedProduct>();
 

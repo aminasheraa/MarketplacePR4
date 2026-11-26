@@ -1,6 +1,4 @@
 ﻿namespace API.DTO
 {
-
-        public record PostOrderDTO(int ProductID, int Quantity);
-    
+    public record PostOrderDTO(int ProductID, int Quantity);
 }

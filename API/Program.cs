@@ -1,36 +1,50 @@
+using API.Interfaces;
+using API.Models;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<MarketPlacePR4Context>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler
+    = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ISavedProductService, SavedProductService>();
+
+builder.Services.AddDbContext<MarketPlacePR4Context>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+
+var jwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
+    AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        IssuerSigningKey = jwtKey
+    });
+builder.Services.AddAuthorization();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
 
-// Configure the HTTP request pipeline.
 
-app.UseHttpsRedirection();
-
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+app.MapControllers();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
 
